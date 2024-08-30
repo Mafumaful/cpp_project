@@ -1,0 +1,21 @@
+services:
+  app:
+    image: mafumaful/cpp_project:1.0
+    runtime: nvidia
+    build:
+      context: ./docker
+      dockerfile: ./cpp/Dockerfile
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev/dri:/dev/dri
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidia-uvm:/dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools
+      - /dev/nvidiactl:/dev/nvidiactl
+      - ./code:/home/docker/code
+    tty: true
+    privileged: true
