@@ -30,14 +30,15 @@ RUN sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libxinerama-dev l
 # opengl
 RUN sudo apt-get install -y libglfw3-dev libglew-dev libglm-dev
 
-# for gdb debugging of eigen
+# for gdb debugging of eigen python
 RUN sudo apt-get install -y python3
-COPY ./.gdbinit /root/.gdbinit
-COPY ./gdbExtensions/** /root/gdbExtensions/
+COPY ./.gdbinit /home/${USER}/.gdbinit
+COPY ./gdbExtensions/** /home/${USER}/gdbExtensions/
 # <<<<<<<<<<<<<<<<<<<<<<<<< initialize <<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >>>>>>>>>>>>>>>>>>>>>>>>> oh-my-zsh >>>>>>>>>>>>>>>>>>>>>>>>>
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+RUN echo "alias python=python3" >> /home/${USER}/.zshrc
 WORKDIR /home/${USER}/code
 
 # set the default shell to zsh
