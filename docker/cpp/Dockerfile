@@ -32,8 +32,8 @@ RUN sudo apt-get install -y libglfw3-dev libglew-dev libglm-dev
 
 # for gdb debugging of eigen
 RUN sudo apt-get install -y python3
-COPY ./docker/.gdbinit /root/.gdbinit
-COPY ./docker/gdbExtensions/** /root/gdbExtensions/
+COPY ./.gdbinit /root/.gdbinit
+COPY ./gdbExtensions/** /root/gdbExtensions/
 # <<<<<<<<<<<<<<<<<<<<<<<<< initialize <<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >>>>>>>>>>>>>>>>>>>>>>>>> oh-my-zsh >>>>>>>>>>>>>>>>>>>>>>>>>
