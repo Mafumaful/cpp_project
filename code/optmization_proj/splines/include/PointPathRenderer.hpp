@@ -53,7 +53,7 @@ public:
         lineWidth = width;
     }
 
-    void render(const std::vector<float>& points) {
+    void render(const std::vector<double>& points) {
         if (points.size() % 2 != 0) {
             throw std::runtime_error("Points vector size must be even.");
         }
@@ -88,7 +88,7 @@ private:
     float lineColor[3] = {0.0f, 0.0f, 0.0f}; // Default color: black
     float lineWidth; // Line width
     float offsetX = 0.0f, offsetY = 0.0f;
-    std::vector<float> points;
+    std::vector<double> points;
 
     static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
         PointPathRenderer* renderer = static_cast<PointPathRenderer*>(glfwGetWindowUserPointer(window));
@@ -111,10 +111,10 @@ private:
         if (points.empty()) return;
 
         // Calculate bounding box
-        float minX = std::numeric_limits<float>::max();
-        float maxX = std::numeric_limits<float>::lowest();
-        float minY = std::numeric_limits<float>::max();
-        float maxY = std::numeric_limits<float>::lowest();
+        double minX = std::numeric_limits<double>::max();
+        double maxX = std::numeric_limits<double>::lowest();
+        double minY = std::numeric_limits<double>::max();
+        double maxY = std::numeric_limits<double>::lowest();
 
         for (size_t i = 0; i < points.size(); i += 2) {
             minX = std::min(minX, points[i]);

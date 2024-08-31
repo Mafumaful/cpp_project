@@ -53,7 +53,7 @@ public:
         lineWidth = width;
     }
 
-    void render(const std::vector<float>& points) {
+    void render(const std::vector<double>& points) {
         if (points.size() % 2 != 0) {
             throw std::runtime_error("Points vector size must be even.");
         }

@@ -12,6 +12,11 @@ endif()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# set debug mode
+set(CMAKE_BUILD_TYPE Debug)
+# optimization
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+
 # Find OpenGL
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIRS})
@@ -34,6 +39,8 @@ include_directories(include)
 
 # Add the excutable
 add_executable(cubic_spline src/cubic_spline.cpp)
+add_executable(temp src/temp.cpp)
 
 # Link libraries
 target_link_libraries(cubic_spline ${OPENGL_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES})
+target_link_libraries(temp ${OPENGL_LIBRARIES} ${GLFW_LIBRARIES} ${GLEW_LIBRARIES})

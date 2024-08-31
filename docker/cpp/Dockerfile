@@ -4,7 +4,7 @@ FROM nvidia/opengl:base-ubuntu22.04
 # >>>>>>>>>>>>>>>>>>>>>>>>> user settitngs >>>>>>>>>>>>>>>>>>>>>>>>>
 # Update and install sudo (if not already installed in your base image)
 ENV USER=docker
-RUN apt-get update && apt-get install -y sudo zsh wget git curl cmake build-essential
+RUN apt-get update && apt-get install -y sudo zsh wget git curl cmake build-essential gdb
 
 # Create a new user 'myuser' and add it to the 'sudo' group
 RUN useradd -m ${USER} && echo "${USER}:${USER}" | chpasswd && adduser ${USER} sudo
@@ -29,6 +29,11 @@ RUN sudo apt-get install -y libeigen3-dev
 RUN sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev x11-apps
 # opengl
 RUN sudo apt-get install -y libglfw3-dev libglew-dev libglm-dev
+
+# for gdb debugging of eigen
+RUN sudo apt-get install -y python3
+COPY ./docker/.gdbinit /root/.gdbinit
+COPY ./docker/gdbExtensions/** /root/gdbExtensions/
 # <<<<<<<<<<<<<<<<<<<<<<<<< initialize <<<<<<<<<<<<<<<<<<<<<<<<<
 
 # >>>>>>>>>>>>>>>>>>>>>>>>> oh-my-zsh >>>>>>>>>>>>>>>>>>>>>>>>>

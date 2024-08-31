@@ -6,13 +6,15 @@ int main() {
         PointPathRenderer renderer(800, 600, "Point Path Renderer");
 
         // Example points forming a path
-        std::vector<float> points = {
-            100.0f, 100.0f,
-            200.0f, 200.0f,
-            300.0f, 150.0f,
-            400.0f, 250.0f,
-            500.0f, 200.0f
+        std::vector<double> points = {
+            100.0d, 100.0d,
+            200.0d, 200.0d,
+            300.0d, 150.0d,
+            400.0d, 250.0d,
+            500.0d, 200.0d
         };
+
+        Eigen::VectorXd eigen_vec = Eigen::Map<Eigen::VectorXd>(points.data(), points.size());
 
         // Set line color to red
         renderer.setLineColor(1.0f, 0.0f, 0.0f);
